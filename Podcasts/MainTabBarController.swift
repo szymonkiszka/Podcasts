@@ -23,6 +23,8 @@ class MainTabBarController: UITabBarController {
         ]
     }
     
+    // MARK:- Helper functions
+    
     fileprivate func generateNavigationController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
         
         let navController = UINavigationController(rootViewController: rootViewController)
