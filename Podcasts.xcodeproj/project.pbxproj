@@ -60,11 +60,9 @@
 		F4083C6720950AAB002D55E9 /* Podcasts */ = {
 			isa = PBXGroup;
 			children = (
+				F4083C6820950AAB002D55E9 /* AppDelegate.swift */,
 				F4D3C32820963D4A00C85D4D /* Model */,
 				F4D3C32720963D4200C85D4D /* Controller */,
-				F4083C6820950AAB002D55E9 /* AppDelegate.swift */,
-				F4083C6A20950AAB002D55E9 /* ViewController.swift */,
-				F4083C7A20950B29002D55E9 /* MainTabBarController.swift */,
 				F4083C6C20950AAB002D55E9 /* Main.storyboard */,
 				F4083C6F20950AAB002D55E9 /* Assets.xcassets */,
 				F4083C7120950AAB002D55E9 /* LaunchScreen.storyboard */,
@@ -77,6 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				F4D3C32520963CA200C85D4D /* PodcastsSearchController.swift */,
+				F4083C6A20950AAB002D55E9 /* ViewController.swift */,
+				F4083C7A20950B29002D55E9 /* MainTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
