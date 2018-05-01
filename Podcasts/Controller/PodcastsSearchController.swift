@@ -11,16 +11,10 @@ import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    let podcasts = [
-        Podcast(name: "Simon Podcast", artistName: "Szymon Kiszka"),
-        Podcast(name: "JRE", artistName: "Joe Rogan"),
-        Podcast(name: "ABC News", artistName: "Jocko Willink"),
-        Podcast(name: "NY Times", artistName: "Szymon Kiszka"),
-        Podcast(name: "JRE", artistName: "Joe Rogan"),
-        Podcast(name: "Fox News", artistName: "Jocko Willink"),
-        Podcast(name: "Simon Podcast", artistName: "Szymon Kiszka"),
-        Podcast(name: "JRE", artistName: "Joe Rogan"),
-        Podcast(name: "Jocko Podcast", artistName: "Jocko Willink")
+    var podcasts = [
+        Podcast(trackName: "Simon Podcast", artistName: "Szymon Kiszka"),
+        Podcast(trackName: "JRE", artistName: "Joe Rogan"),
+        Podcast(trackName: "ABC News", artistName: "Jocko Willink")
     ]
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -48,20 +42,33 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
         
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        Alamofire.request(url).responseData { (dataResponse) in
+        let url = "https://itunes.apple.com/search"
+        let parameters = ["term": searchText, "media": "podcast"]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
+            
             if let err = dataResponse.error {
                 print("Failed to connect yahoo", err)
             }
             
             guard let data = dataResponse.data else { return }
             
-            let dummyString = String(data: data, encoding: .utf8)
-            print(dummyString ?? "")
+            do {
+                let searchResult =  try JSONDecoder().decode(SearchResults.self, from: data)
+                
+                self.podcasts = searchResult.results
+                self.tableView.reloadData()
+                
+            } catch let decodeErr {
+                print("Failed to decode: ", decodeErr)
+            }
         }
-        
+    }
+    
+    struct SearchResults: Decodable {
+        let resultCount: Int
+        let results: [Podcast]
     }
     
     // MARK:- UITableView
@@ -74,7 +81,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
         let podcast = self.podcasts[indexPath.row]
-        cell.textLabel?.text = "\(podcast.name)\n\(podcast.artistName)"
+        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
         cell.textLabel?.numberOfLines = -1
         cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         
