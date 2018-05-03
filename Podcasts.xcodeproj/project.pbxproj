@@ -90,10 +90,10 @@
 		F4083C6720950AAB002D55E9 /* Podcasts */ = {
 			isa = PBXGroup;
 			children = (
-				F4F55ABD209B36D700DC5C3D /* View */,
 				F4083C6820950AAB002D55E9 /* AppDelegate.swift */,
 				F4F55ABA209B2F2200DC5C3D /* Service */,
 				F4D3C32820963D4A00C85D4D /* Model */,
+				F4F55ABD209B36D700DC5C3D /* View */,
 				F4D3C32720963D4200C85D4D /* Controller */,
 				F4083C6A20950AAB002D55E9 /* ViewController.swift */,
 				F4083C7A20950B29002D55E9 /* MainTabBarController.swift */,
@@ -225,10 +225,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Podcasts/Pods-Podcasts-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

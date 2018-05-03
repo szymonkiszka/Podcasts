@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PodcastCell: UITableViewCell {
     
@@ -15,12 +16,21 @@ class PodcastCell: UITableViewCell {
     @IBOutlet weak var episodeCountLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     
-    //! means that it's going to assume it is always going to be 'something' when ure accessing it.
     var podcast: Podcast! {
         didSet {
             trackNameLabel.text = podcast.trackName
             artistNameLabel.text = podcast.artistName
+            episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
+            
+            guard let url = URL(string: podcast.artworkUrl600 ?? "") else {
+                return }
+            
+            podcastImageView.sd_setImage(with: url, completed: nil)
         }
     }
     
 }
+
+
+
+

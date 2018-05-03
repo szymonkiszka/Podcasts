@@ -13,7 +13,6 @@ class Service {
     
     let baseItunesSearchURL = "https://itunes.apple.com/search"
     
-    //singleton
     static let shared = Service()
     
     func fetchPodcasts(searchText: String, complitionHandler: @escaping ([Podcast]) -> ()) {
@@ -30,20 +29,13 @@ class Service {
             guard let data = dataResponse.data else { return }
             
             do {
-                print(3)
                 let searchResult =  try JSONDecoder().decode(SearchResults.self, from: data)
-                
                 complitionHandler(searchResult.results)
-//                self.podcasts = searchResult.results
-//                self.tableView.reloadData()
                 
             } catch let decodeErr {
                 print("Failed to decode: ", decodeErr)
             }
         }
-        
-        print(2)
-        
     }
     
     struct SearchResults: Decodable {
