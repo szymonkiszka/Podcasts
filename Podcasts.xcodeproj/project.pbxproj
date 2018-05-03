@@ -16,6 +16,7 @@
 		F4083C7B20950B29002D55E9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4083C7A20950B29002D55E9 /* MainTabBarController.swift */; };
 		F4D3C32620963CA200C85D4D /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3C32520963CA200C85D4D /* PodcastsSearchController.swift */; };
 		F4D3C32A20963D6600C85D4D /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3C32920963D6600C85D4D /* Podcast.swift */; };
+		F4F55ABC209B2F3A00DC5C3D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F55ABB209B2F3A00DC5C3D /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F4083C7A20950B29002D55E9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F4D3C32520963CA200C85D4D /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
 		F4D3C32920963D6600C85D4D /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		F4F55ABB209B2F3A00DC5C3D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				F4083C6820950AAB002D55E9 /* AppDelegate.swift */,
+				F4F55ABA209B2F2200DC5C3D /* Service */,
 				F4D3C32820963D4A00C85D4D /* Model */,
 				F4D3C32720963D4200C85D4D /* Controller */,
 				F4083C6A20950AAB002D55E9 /* ViewController.swift */,
@@ -119,6 +122,14 @@
 				F4D3C32920963D6600C85D4D /* Podcast.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F4F55ABA209B2F2200DC5C3D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F4F55ABB209B2F3A00DC5C3D /* Service.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +250,7 @@
 				F4083C6920950AAB002D55E9 /* AppDelegate.swift in Sources */,
 				F4083C7B20950B29002D55E9 /* MainTabBarController.swift in Sources */,
 				F4D3C32A20963D6600C85D4D /* Podcast.swift in Sources */,
+				F4F55ABC209B2F3A00DC5C3D /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
