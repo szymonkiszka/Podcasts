@@ -23,21 +23,24 @@ class Service {
         
         guard let url = URL(string: secureFeedUrl) else { return }
         
-        let parser = FeedParser(URL: url)
-        
-        parser?.parseAsync(result: { (result) in
-            print("Successfully parse feed:", result.isSuccess)
+        DispatchQueue.global(qos: .background).async {
             
-            if let err = result.error {
-                print("Failed to parse XML feed:", err)
-                return
-            }
+            let parser = FeedParser(URL: url)
             
-            guard let feed = result.rssFeed else { return }
-            
-            let episodes = feed.toEpisode()
-            complitionHandler(episodes)
-        })
+            parser?.parseAsync(result: { (result) in
+                print("Successfully parse feed:", result.isSuccess)
+                
+                if let err = result.error {
+                    print("Failed to parse XML feed:", err)
+                    return
+                }
+                
+                guard let feed = result.rssFeed else { return }
+                
+                let episodes = feed.toEpisode()
+                complitionHandler(episodes)
+            })
+        }
     }
     
     func fetchPodcasts(searchText: String, complitionHandler: @escaping ([Podcast]) -> ()) {

@@ -24,6 +24,7 @@
 		F45405B3209B57BC002726C6 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45405B2209B57BC002726C6 /* Episode.swift */; };
 		F4D3C32620963CA200C85D4D /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3C32520963CA200C85D4D /* PodcastsSearchController.swift */; };
 		F4D3C32A20963D6600C85D4D /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3C32920963D6600C85D4D /* Podcast.swift */; };
+		F4E47FAD20C980C6008C640A /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E47FAC20C980C6008C640A /* CMTime.swift */; };
 		F4F55ABC209B2F3A00DC5C3D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F55ABB209B2F3A00DC5C3D /* Service.swift */; };
 		F4F55ABF209B36F900DC5C3D /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F55ABE209B36F900DC5C3D /* PodcastCell.xib */; };
 		F4F55AC1209B388B00DC5C3D /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F55AC0209B388B00DC5C3D /* PodcastCell.swift */; };
@@ -51,6 +52,7 @@
 		F45405B2209B57BC002726C6 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		F4D3C32520963CA200C85D4D /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
 		F4D3C32920963D6600C85D4D /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		F4E47FAC20C980C6008C640A /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		F4F55ABB209B2F3A00DC5C3D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F4F55ABE209B36F900DC5C3D /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		F4F55AC0209B388B00DC5C3D /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				F437D1DF20A6F7000004E485 /* Extension.swift */,
 				F437D1E120A6F8060004E485 /* RSSFeed.swift */,
+				F4E47FAC20C980C6008C640A /* CMTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				F4539E9B20A8836600C036C4 /* PlayerDetailsView.swift in Sources */,
 				F4D3C32620963CA200C85D4D /* PodcastsSearchController.swift in Sources */,
 				F4083C6B20950AAB002D55E9 /* ViewController.swift in Sources */,
+				F4E47FAD20C980C6008C640A /* CMTime.swift in Sources */,
 				F4083C6920950AAB002D55E9 /* AppDelegate.swift in Sources */,
 				F45405B1209B53DC002726C6 /* EpisodesController.swift in Sources */,
 				F4083C7B20950B29002D55E9 /* MainTabBarController.swift in Sources */,

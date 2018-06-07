@@ -39,10 +39,114 @@ class PlayerDetailsView: UIView {
         return avPlayer
     }()
     
+    fileprivate func observePlayerCurrentTime() {
+        let interval = CMTimeMake(1, 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
+            
+            self?.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self?.player.currentItem?.duration
+            self?.durationLabel.text = durationTime?.toDisplayString()
+            
+            self?.updateCurrentTimeSlider()
+            
+        }
+    }
+    
+    fileprivate func updateCurrentTimeSlider() {
+        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(1, 1))
+        let percentage = currentTimeSeconds / durationSeconds
+        
+        self.currentTimeSlider.value = Float(percentage)
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        observePlayerCurrentTime()
+        
+        let time = CMTimeMake(1, 3)
+        let times = [NSValue(time: time)]
+        
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+            [weak self] in
+            print("Episode started playing")
+            self?.enlargeEpisodeImageView()
+        }
+    }
+    
+    deinit {
+        print("PlayerDetailsView memory being reclaimed...")
+    }
+    
     //MARK:= IB Actions and Outlets
+
+    @IBAction func handleCurrentTimeSliderChange(_ sender: Any) {
+        let percentage = currentTimeSlider.value
+        
+        guard let duration = player.currentItem?.duration else { return }
+        
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, Int32(NSEC_PER_SEC))
+        
+        player.seek(to: seekTime)
+        
+    }
+    
+    @IBAction func handleRewind(_ sender: Any) {
+        seekToCurrentTime(delta: -15)
+    }
+    
+
+    @IBAction func handleFastForward(_ sender: Any) {
+        seekToCurrentTime(delta: 15)
+    }
+    
+    fileprivate func seekToCurrentTime(delta: Int64) {
+        let fifteenSeconds = CMTimeMake(delta, 1)
+        let seekTime = CMTimeAdd(player.currentTime(), fifteenSeconds)
+        
+        player.seek(to: seekTime)
+    }
+
+    @IBAction func handleVolumeChange(_ sender: UISlider) {
+        player.volume = sender.value
+        
+    }
+    
+    @IBOutlet weak var currentTimeSlider: UISlider!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
+        
+    }
+    
+    fileprivate let shrunkenTransfrom = CGAffineTransform(scaleX: 0.7, y: 0.7)
+    
+    fileprivate func enlargeEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = .identity
+            
+        })
+    }
+    
+    fileprivate func shrinkEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = .identity
+            self.episodeImageView.transform = self.shrunkenTransfrom
+        })
+    }
+    
+    @IBOutlet weak var episodeImageView: UIImageView! {
+        didSet {
+            episodeImageView.layer.cornerRadius = 7
+            episodeImageView.clipsToBounds = true
+            episodeImageView.transform = self.shrunkenTransfrom
+        }
     }
     
     @IBOutlet weak var playPauseButton: UIButton! {
@@ -57,15 +161,15 @@ class PlayerDetailsView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            enlargeEpisodeImageView()
         } else {
             player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            shrinkEpisodeImageView()
         }
         
     }
     
-    
-    @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
