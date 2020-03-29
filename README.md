@@ -1,2 +1,1 @@
-# Podcasts
-https://www.letsbuildthatapp.com/
+https://www.letsbuildthatapp.com
